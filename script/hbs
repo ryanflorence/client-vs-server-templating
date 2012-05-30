@@ -1,0 +1,4 @@
+#!/bin/sh
+handlebars -f app/assets/javascripts/templates.js app/views/jst/*
+echo "\nHandlebars.registerPartial('whatev', Handlebars.templates.whatev)" >> app/assets/javascripts/templates.js
+
