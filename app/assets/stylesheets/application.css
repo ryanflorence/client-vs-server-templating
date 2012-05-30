@@ -5,3 +5,8 @@
  *= require_self
  *= require_tree . 
 */
+
+.server, .client { white-space: nowrap; }
+.server { background: #fc0; }
+.client { background: #0cf; }
+
