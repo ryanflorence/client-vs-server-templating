@@ -95,6 +95,7 @@ $ =>
   ##
   # report the results
   @report = ->
+    window._bTestResults = {}
     target.empty()
     target.addBar 'server', 'render'
     target.addBar 'client', 'render'
@@ -106,6 +107,16 @@ $ =>
     target.addBar 'client', 'total'
     target.append '<br>'
     target.addBar 'client', 'parseJSON'
+    # browserscope beacon
+    `(function(document) {
+      var testKey = 'agt1YS1wcm9maWxlcnINCxIEVGVzdBjkgaARDA';
+      var newScript = document.createElement('script'),
+          firstScript = document.getElementsByTagName('script')[0];
+      newScript.src = 'http://www.browserscope.org/user/beacon/' + testKey;
+      newScript.src += '?callback=Browserscope.update';
+      firstScript.parentNode.insertBefore(newScript, firstScript);
+    }(document));`
+    $('#chart').html "loading Browserscope results..."
 
   ##
   # counts how close we are to numberOfTests
@@ -114,4 +125,3 @@ $ =>
   ##
   # Kick the requests off
   $(window).load renderClient
-
